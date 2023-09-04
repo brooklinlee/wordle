@@ -1,0 +1,43 @@
+.board {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.row {
+    border: 1px solid red;
+    display: flex;
+    height: 10vh;
+}
+
+.sqr {
+    border: 1px solid blue;
+    width: 10vh;
+}
+.input {
+    border: 1px solid black;
+    height: 5vh;
+}
+
+.keyboard {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.key-row {
+    border: 1px solid red;
+    display: flex;
+    height: 10vh;
+}
+
+.key {
+    border: 1px solid blue;
+    width: 6vh;
+    height: 6vh;
+}
