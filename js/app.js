@@ -4,64 +4,128 @@
 import { getRandomWord } from './word-bank.js'
 
 // VARIABLES
-let board, guessNum, winner, answer
+let board, guessNum, winner, answer, validGuess
 
+let guess = inputEl.value.toLowerCase()
 
 // CACHED ELEMENT REFERENCES
 const submitBtn = document.getElementById('submit-btn')
 const resetBtn = document.getElementById('reset-btn')
 const inputEl = document.getElementById('inputEl')
-let guess = inputEl.value
+const msgEl = document.getElementById('msg')
+
+const msgText = document.createElement('p')
+
+
 
 // EVENT LISTENERS
-submitBtn.addEventListener('click', checkLength)
+submitBtn.addEventListener('click', testGuess)
+submitBtn.addEventListener('click', renderGuessToScreen)
 
 resetBtn.addEventListener('click', () => {})
 
 // FUNCTIONS
-// init()
 
 const init = () => {
     board = [[null, null ,null ,null ,null],
-        [null, null ,null ,null ,null],
-        [null, null ,null ,null ,null],
-        [null, null ,null ,null ,null],
-        [null, null ,null ,null ,null],
-        [null, null ,null ,null ,null],]
+    [null, null ,null ,null ,null],
+    [null, null ,null ,null ,null],
+    [null, null ,null ,null ,null],
+    [null, null ,null ,null ,null],
+    [null, null ,null ,null ,null],]
+    guesses = {
+        guessOne: null,
+        guessTwo: null,
+        guessThree: null,
+        guessFour: null,
+        guessFive: null,
+        guessSix: null,
+    }
     guessNum = 0    
-    winner = false
+    // winner = false
+    validGuess = 0
     answer = getRandomWord()
+    console.log(answer)
 }
 
-// function:
-// choose a new answer
+init()
 
-// checkLength: 
-// input is 5 letters long
-// if longer than 5 letters msg = guess too long, return false
-// if shorter than 5 letters msg = guess too short, return true
-// if input is 5 letters long return true
-// if false, break out of parent function
+
+function testGuess(){
+    clearMsg()
+    toLowerCase()
+    // checkLetters()
+    checkLength()
+    // How to exit out of this function if validGuess is false?
+    checkWinner()
+    // testGuessAgainstAnswer()
+    clearInputValue()
+}
+
+function clearMsg() {
+    msgText.innerText = ''
+}
+
+function toLowerCase() {
+    let convertedGuess = inputEl.value.toString().toLowerCase()
+    console.log(convertedGuess)
+    return convertedGuess
+}
+
+function checkLetters() {
+    // make sure there are only letters in the guess
+    //* TRY .isNAN ?
+    // 
+}
 
 function checkLength() {
-    if (guess.length > 5) {
-        console.log('guess is too long')
-    } else if (guess.length < 5) {
-        console.log('guess is too short')
+    if (inputEl.value.length > 5) {
+        msgText.innerText = 'guess is too long'
+        msgEl.append(msgText)
+        validGuess = false
+        // return
+        // console.log('guess is too long')
+    } else if (inputEl.value.length < 5) {
+        msgText.innerText = 'guess is too short'
+        msgEl.append(msgText)
+        validGuess = false
+        // return
+        // console.log('guess is too short')
     } else {
+        testGuessAgainstAnswer()
         console.log('guess is just right')
+        validGuess = true
     }
-    inputEl.value = ''
 } 
 
+function testGuessAgainstAnswer() {
+    if (inputEl.value.toString().toLowerCase() === answer) {
+        let winner = true
+        msgText.innerText = 'winner!'
+        msgEl.append(msgText)
+    } else {
+        let winner = false
+        msgText.innerText = 'keep trying!'
+        msgEl.append(msgText)
+    }
+}
 
+function checkWinner() {
+    if (winner === true){
+        msgText.innerText = 'winner!'
+        msgEl.append(msgText)
+    } else {
+        console.log('keep guessing')
+    }
+}
 
-// checkWinner:
-// convert guess to lowercase
-// if guess === answer
-// return msg = we have a winner
+function clearInputValue() {
+    inputEl.value = ''
+}
 
-const checkWinner = () => {}
+function renderGuessToScreen() {
+    // take individual letters and render to screen IF only 5 letters
+    console.log('render to screen')
+}
 
-// function:
-// 
+// take guess and break apart, add new guess to an object named guesses

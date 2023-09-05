@@ -21,6 +21,10 @@
     border: 1px solid black;
     height: 5vh;
 }
+#msg {
+    border: 1px solid black;
+    height: 5vh;
+}
 
 .keyboard {
     border: 1px solid black;
