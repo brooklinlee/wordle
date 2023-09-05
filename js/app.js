@@ -4,9 +4,8 @@
 import { getRandomWord } from './word-bank.js'
 
 // VARIABLES
-let board, guessNum, winner, answer, validGuess
+let board, guessNum, winner, answer, validGuess, guesses
 
-let guess = inputEl.value.toLowerCase()
 
 // CACHED ELEMENT REFERENCES
 const submitBtn = document.getElementById('submit-btn')
@@ -16,11 +15,12 @@ const msgEl = document.getElementById('msg')
 
 const msgText = document.createElement('p')
 
+let guess = inputEl.value.toLowerCase()
 
 
 // EVENT LISTENERS
 submitBtn.addEventListener('click', testGuess)
-submitBtn.addEventListener('click', renderGuessToScreen)
+// submitBtn.addEventListener('click', addGuessToObject)
 
 resetBtn.addEventListener('click', () => {})
 
@@ -34,12 +34,12 @@ const init = () => {
     [null, null ,null ,null ,null],
     [null, null ,null ,null ,null],]
     guesses = {
-        guessOne: null,
-        guessTwo: null,
-        guessThree: null,
-        guessFour: null,
-        guessFive: null,
-        guessSix: null,
+        guess1: null,
+        guess2: null,
+        guess3: null,
+        guess4: null,
+        guess5: null,
+        guess6: null,
     }
     guessNum = 0    
     // winner = false
@@ -60,6 +60,7 @@ function testGuess(){
     checkWinner()
     // testGuessAgainstAnswer()
     clearInputValue()
+    // addGuessToObject()
 }
 
 function clearMsg() {
@@ -77,7 +78,7 @@ function checkLetters() {
     //* TRY .isNAN ?
     // 
 }
-
+// ADDING A LOT HERE
 function checkLength() {
     if (inputEl.value.length > 5) {
         msgText.innerText = 'guess is too long'
@@ -96,6 +97,7 @@ function checkLength() {
         console.log('guess is just right')
         validGuess = true
     }
+    addGuessToObject()
 } 
 
 function testGuessAgainstAnswer() {
@@ -125,7 +127,13 @@ function clearInputValue() {
 
 function renderGuessToScreen() {
     // take individual letters and render to screen IF only 5 letters
+    addGuessToObject()
     console.log('render to screen')
 }
 
-// take guess and break apart, add new guess to an object named guesses
+// take guess and add to (change the value to the key value pair) to guesses object
+function addGuessToObject() {
+    guesses.guess1 = inputEl.value
+    console.log(guesses)
+}
+
