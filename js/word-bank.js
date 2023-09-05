@@ -4,6 +4,10 @@ const words = ['apple', 'dance', 'eager', 'water', 'quiet', 'laugh', 'smart', 'c
 'music', 'quick', 'laugh', 'smart', 'snake', 'bread', 'plant', 'ocean', 'slide', 'watch', 'stone', 'tiger', 'cloud', 'peace', 'radio', 'socks', 'shoes', 'heart', 'round', 'paint', 'phone', 'dream', 'smile', 
 ]
 
+function getRandomWord() {
+    return words[Math.floor(Math.random() * words.length)]
+}
+
 export{
-    words
+    getRandomWord
 }
