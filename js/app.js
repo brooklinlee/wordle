@@ -4,7 +4,7 @@
 import { getRandomWord } from './word-bank.js'
 
 // VARIABLES
-let board, guessNum, winner, answer, validGuess, guesses
+let board, guessNum, winner, answer, validGuess, guesses, deconstructGuess
 
 
 // CACHED ELEMENT REFERENCES
@@ -15,7 +15,7 @@ const msgEl = document.getElementById('msg')
 
 const msgText = document.createElement('p')
 
-let guess = inputEl.value.toLowerCase()
+// let guess = inputEl.value.toLowerCase()
 
 
 // EVENT LISTENERS
@@ -34,6 +34,7 @@ const init = () => {
     [null, null ,null ,null ,null],
     [null, null ,null ,null ,null],]
     guesses = [null, null, null, null, null, null]
+    deconstructGuess = []
     guessNum = 0    
     // winner = false
     validGuess = 0
@@ -49,8 +50,9 @@ function testGuess(){
     toLowerCase()
     // checkLetters()
     checkLength()
-    checkWinner()
     updateArray()
+    breakApart()
+    displayWinner()
     clearInputValue()
     
 }
@@ -110,16 +112,68 @@ function clearInputValue() {
 function updateArray() {
     let updated = false
     for (let i = 0; i < guesses.length; i++) {
-        if (!updated && (guesses[i] === null || guesses[i] === '')) {
+        if (!updated && (guesses[i] === null) && (inputEl.value.length === 5) && (inputEl.value !== answer)) {
             guesses[i] = inputEl.value.toLowerCase()
             updated = true
         }
     }
     console.log(guesses)
+    // breakApart()
 }
 
-function checkWinner() {
+function displayWinner() {
     if (inputEl.value.toLowerCase() === answer) {
         console.log('you won the game!')
+        // display winner here
     }
 }
+
+//* NEXT - create a function that takes value of array (if !null), breaks it apart to individual letters, creates a new array out of it, and displays the letters one by one to the grid using getElementById('')
+
+// function breakApart() {
+//     guesses.forEach(function(i) {
+//         let updated = false
+//         for (let i = 0; i < guesses.length; i++) {
+//             if ((guesses[i] !== null) && (!updated)) {
+//                 console.log(guesses[i][0])
+//                 console.log(guesses[i][1])
+//                 console.log(guesses[i][2])
+//                 console.log(guesses[i][3])
+//                 console.log(guesses[i][4])
+//                 updated = true
+//             }
+//         }
+//     })
+// }
+
+let testArray = ['lemon', 'lake', 'lemon', 'grape', 'birds' , 'quack']
+
+function breakApartTest() {
+        let updated = false
+        testArray.forEach(function(i){
+            for (let i = 0; i < testArray.length; i++) {
+            if ((testArray[i] !== null) && (!updated)) {
+                console.log(testArray[i][0])
+                console.log(testArray[i][1])
+                console.log(testArray[i][2])
+                console.log(testArray[i][3])
+                console.log(testArray[i][4])
+                updated = true
+            }
+        }
+        })
+        
+    }
+
+
+breakApartTest()
+
+
+function placeInSqare() {
+    //takes individual letters and appends them to individual squares
+}
+
+// console.log(guesses[0][0])
+
+// let testArray = ['string', 'ball', 'yarn']
+// console.log(testArray[0][1])
