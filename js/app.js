@@ -117,36 +117,25 @@ function clearInputValue() {
 }
 
 
-// take guess and add to (change the value to the key value pair) to guesses object
-// function addGuessToObject() {
-//     guesses.guess1 = inputEl.value
-//     console.log(guesses)
-// }
+// NEXT - this adds the input value to every null value in the guesses array. How to change so it only does this for the first value?
 
-// take the above concept and FOR EACH object in the array on click add to next value
-// function addGuessToObject(){
+// Do I need to consider switch statements? 
+// Or while loops?
+
+// function updateArray() {
 //     for (let i = 0; i < guesses.length; i++) {
-//         guesses.i = inputEl.value
-//     }
+//         if (guesses[i] === null) {
+//             guesses.splice(i, 1, inputEl.value.toLowerCase())
+//         }
 //     console.log(guesses)
+//     }
 // }
-
-
-// UPDATE - if value !== null inputEl.value
-// set guesses.key === inputEl.value
-// ELSE IF  if value of guesses.guess1 is null, change value to
-
-// addGuessToObject()
-// console.log(guesses)
 
 function updateArray() {
-    for (let i = 0; i < guesses.length; i++) {
-        if (guesses[i] === null) {
+    length = guesses.length
+    let i = 0
+    while (i < length && guesses[i] === null) {
             guesses.splice(i, 1, inputEl.value.toLowerCase())
-        // } else if (guesses[i] !== null) {
-
-        // }
-        }
-    console.log(guesses)
     }
+    console.log(guesses)
 }
