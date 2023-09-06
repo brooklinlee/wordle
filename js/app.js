@@ -130,43 +130,23 @@ function displayWinner() {
 
 //* NEXT - create a function that takes value of array (if !null), breaks it apart to individual letters, creates a new array out of it, and displays the letters one by one to the grid using getElementById('')
 
-// function breakApart() {
-//     guesses.forEach(function(i) {
-//         let updated = false
-//         for (let i = 0; i < guesses.length; i++) {
-//             if ((guesses[i] !== null) && (!updated)) {
-//                 console.log(guesses[i][0])
-//                 console.log(guesses[i][1])
-//                 console.log(guesses[i][2])
-//                 console.log(guesses[i][3])
-//                 console.log(guesses[i][4])
-//                 updated = true
-//             }
-//         }
-//     })
-// }
+// Try the .map() method? 
+function breakApart() {
+    const arrayOfArrays = guesses.map(str => [str])
+    console.log(arrayOfArrays)
+}
 
-let testArray = ['lemon', 'lake', 'lemon', 'grape', 'birds' , 'quack']
+// let testArray = ['lemon', 'lake', 'lemon', 'grape', 'birds' , 'quack']
 
-function breakApartTest() {
-        let updated = false
-        testArray.forEach(function(i){
-            for (let i = 0; i < testArray.length; i++) {
-            if ((testArray[i] !== null) && (!updated)) {
-                console.log(testArray[i][0])
-                console.log(testArray[i][1])
-                console.log(testArray[i][2])
-                console.log(testArray[i][3])
-                console.log(testArray[i][4])
-                updated = true
-            }
-        }
-        })
-        
-    }
+// const arrayOfArrays = testArray.map(str => [str])
+
+// console.log (arrayOfArrays)
+
+// function breakApartTest() {
+//     }
 
 
-breakApartTest()
+// breakApartTest()
 
 
 function placeInSqare() {
