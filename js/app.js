@@ -20,7 +20,7 @@ let guess = inputEl.value.toLowerCase()
 
 // EVENT LISTENERS
 submitBtn.addEventListener('click', testGuess)
-// submitBtn.addEventListener('click', addGuessToObject)
+submitBtn.addEventListener('click', updateArray)
 
 resetBtn.addEventListener('click', () => {})
 
@@ -33,14 +33,7 @@ const init = () => {
     [null, null ,null ,null ,null],
     [null, null ,null ,null ,null],
     [null, null ,null ,null ,null],]
-    guesses = {
-        guess1: null,
-        guess2: null,
-        guess3: null,
-        guess4: null,
-        guess5: null,
-        guess6: null,
-    }
+    guesses = [null, null, null, null, null, null]
     guessNum = 0    
     // winner = false
     validGuess = 0
@@ -60,7 +53,7 @@ function testGuess(){
     checkWinner()
     // testGuessAgainstAnswer()
     clearInputValue()
-    // addGuessToObject()
+    addGuessToObject()
 }
 
 function clearMsg() {
@@ -84,20 +77,18 @@ function checkLength() {
         msgText.innerText = 'guess is too long'
         msgEl.append(msgText)
         validGuess = false
-        // return
-        // console.log('guess is too long')
+        return
     } else if (inputEl.value.length < 5) {
         msgText.innerText = 'guess is too short'
         msgEl.append(msgText)
         validGuess = false
-        // return
-        // console.log('guess is too short')
+        return
     } else {
         testGuessAgainstAnswer()
         console.log('guess is just right')
         validGuess = true
     }
-    addGuessToObject()
+    updateArray()
 } 
 
 function testGuessAgainstAnswer() {
@@ -125,15 +116,37 @@ function clearInputValue() {
     inputEl.value = ''
 }
 
-function renderGuessToScreen() {
-    // take individual letters and render to screen IF only 5 letters
-    addGuessToObject()
-    console.log('render to screen')
-}
 
 // take guess and add to (change the value to the key value pair) to guesses object
-function addGuessToObject() {
-    guesses.guess1 = inputEl.value
-    console.log(guesses)
-}
+// function addGuessToObject() {
+//     guesses.guess1 = inputEl.value
+//     console.log(guesses)
+// }
 
+// take the above concept and FOR EACH object in the array on click add to next value
+// function addGuessToObject(){
+//     for (let i = 0; i < guesses.length; i++) {
+//         guesses.i = inputEl.value
+//     }
+//     console.log(guesses)
+// }
+
+
+// UPDATE - if value !== null inputEl.value
+// set guesses.key === inputEl.value
+// ELSE IF  if value of guesses.guess1 is null, change value to
+
+// addGuessToObject()
+// console.log(guesses)
+
+function updateArray() {
+    for (let i = 0; i < guesses.length; i++) {
+        if (guesses[i] === null) {
+            guesses.splice(i, 1, inputEl.value.toLowerCase())
+        // } else if (guesses[i] !== null) {
+
+        // }
+        }
+    console.log(guesses)
+    }
+}
