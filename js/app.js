@@ -5,6 +5,7 @@ import { getRandomWord } from './word-bank.js'
 
 // VARIABLES
 let board, guessNum, winner, answer, validGuess, guesses, deconstructGuess
+let arrayOfArrays = []
 
 
 // CACHED ELEMENT REFERENCES
@@ -34,7 +35,7 @@ const init = () => {
     [null, null ,null ,null ,null],
     [null, null ,null ,null ,null],]
     guesses = [null, null, null, null, null, null]
-    deconstructGuess = []
+    // arrayOfArrays = [null, null, null, null, null]
     guessNum = 0    
     // winner = false
     validGuess = 0
@@ -51,7 +52,7 @@ function testGuess(){
     // checkLetters()
     checkLength()
     updateArray()
-    breakApart()
+    // breakApart()
     displayWinner()
     clearInputValue()
     
@@ -105,8 +106,12 @@ function testGuessAgainstAnswer() {
     }
 }
 
-function clearInputValue() {
-    inputEl.value = ''
+
+function displayWinner() {
+    if (inputEl.value.toLowerCase() === answer) {
+        console.log('you won the game!')
+        // display winner here
+    }
 }
 
 function updateArray() {
@@ -117,43 +122,39 @@ function updateArray() {
             updated = true
         }
     }
+    guesses.forEach(function(word){
+        if (word !== null) {
+            let letters = word.split('')
+            console.log(letters)
+        }
+    })
     console.log(guesses)
-    // breakApart()
+    inputEl.value = ''
+    // trial()
 }
+//* NEXT - iterate through the guesses, for each guess, you split the string into individual letters and then take each letter and push them into a square
 
-function displayWinner() {
-    if (inputEl.value.toLowerCase() === answer) {
-        console.log('you won the game!')
-        // display winner here
-    }
+function trial() {
+        
+    console.log(letters)
 }
-
-//* NEXT - create a function that takes value of array (if !null), breaks it apart to individual letters, creates a new array out of it, and displays the letters one by one to the grid using getElementById('')
-
-// Try the .map() method? 
-function breakApart() {
-    const arrayOfArrays = guesses.map(str => [str])
-    console.log(arrayOfArrays)
-}
-
-// let testArray = ['lemon', 'lake', 'lemon', 'grape', 'birds' , 'quack']
-
-// const arrayOfArrays = testArray.map(str => [str])
-
-// console.log (arrayOfArrays)
-
-// function breakApartTest() {
-//     }
-
-
-// breakApartTest()
-
 
 function placeInSqare() {
-    //takes individual letters and appends them to individual squares
+    
 }
 
-// console.log(guesses[0][0])
 
-// let testArray = ['string', 'ball', 'yarn']
-// console.log(testArray[0][1])
+function clearInputValue() {
+    inputEl.value = ''
+}
+// Try the .map() method? 
+// function breakApart() {
+    //     arrayOfArrays = guesses.map(str => [str])
+    //     placeInSqare()
+    // }
+    
+    
+    // console.log(guesses[0][0])
+    
+    // let testArray = ['string', 'ball', 'yarn']
+    // console.log(testArray[0][1])
