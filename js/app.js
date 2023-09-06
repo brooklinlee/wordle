@@ -20,7 +20,7 @@ let guess = inputEl.value.toLowerCase()
 
 // EVENT LISTENERS
 submitBtn.addEventListener('click', testGuess)
-submitBtn.addEventListener('click', updateArray)
+// submitBtn.addEventListener('click', updateArray)
 
 resetBtn.addEventListener('click', () => {})
 
@@ -49,11 +49,10 @@ function testGuess(){
     toLowerCase()
     // checkLetters()
     checkLength()
-    // How to exit out of this function if validGuess is false?
     checkWinner()
-    // testGuessAgainstAnswer()
+    updateArray()
     clearInputValue()
-    addGuessToObject()
+    
 }
 
 function clearMsg() {
@@ -88,7 +87,8 @@ function checkLength() {
         console.log('guess is just right')
         validGuess = true
     }
-    updateArray()
+    // updateArray()
+    // checkWinner()
 } 
 
 function testGuessAgainstAnswer() {
@@ -103,39 +103,23 @@ function testGuessAgainstAnswer() {
     }
 }
 
-function checkWinner() {
-    if (winner === true){
-        msgText.innerText = 'winner!'
-        msgEl.append(msgText)
-    } else {
-        console.log('keep guessing')
-    }
-}
-
 function clearInputValue() {
     inputEl.value = ''
 }
 
-
-// NEXT - this adds the input value to every null value in the guesses array. How to change so it only does this for the first value?
-
-// Do I need to consider switch statements? 
-// Or while loops?
-
-// function updateArray() {
-//     for (let i = 0; i < guesses.length; i++) {
-//         if (guesses[i] === null) {
-//             guesses.splice(i, 1, inputEl.value.toLowerCase())
-//         }
-//     console.log(guesses)
-//     }
-// }
-
 function updateArray() {
-    length = guesses.length
-    let i = 0
-    while (i < length && guesses[i] === null) {
-            guesses.splice(i, 1, inputEl.value.toLowerCase())
+    let updated = false
+    for (let i = 0; i < guesses.length; i++) {
+        if (!updated && (guesses[i] === null || guesses[i] === '')) {
+            guesses[i] = inputEl.value.toLowerCase()
+            updated = true
+        }
     }
     console.log(guesses)
+}
+
+function checkWinner() {
+    if (inputEl.value.toLowerCase() === answer) {
+        console.log('you won the game!')
+    }
 }
